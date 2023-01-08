@@ -81,7 +81,17 @@
                             <a class="dropdown-item" href="{% url 'store' %}"> All </a>
                         
                         </li>
-                    
+                        
+                        {% comment %} all_categories is available from the store view and context processors {% endcomment %}
+                        {% for category in all_categories %}
+
+                        <li>
+                            
+                            <a class="dropdown-item" href=""> {{ category.name | capfirst }} </a>
+                        
+                        </li>
+
+                        {% endfor %}
         
                     
                     </ul>
