@@ -20,11 +20,20 @@ def categories(request):
     #see settings.py to see where it is added
     return {'all_categories': all_categories}
 
+def list_category(request, category_slug = None):
+    #find the category with matching slug
+    category = get_object_or_404(Category, slug=category_slug)
+    #filter products from product model that have the matching category
+    products = Product.objects.filter(category=category)
+    
+    #render the list-category template sending in an object containing category data and those affiliated products
+    return render(request, 'store/list-category.html', {'category': category, 'products': products})
+
 #slug comes from url <slug:slug>
-def product_info(request, slug):
+def product_info(request, product_slug):
     #find product that has the same slug as url slug or return not found
     #set it to context object
-    product = get_object_or_404(Product, slug=slug)
+    product = get_object_or_404(Product, slug=product_slug)
     context = { 'product': product}
 
     #render the product info view with this product context object

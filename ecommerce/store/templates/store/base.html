@@ -87,7 +87,7 @@
 
                         <li>
                             
-                            <a class="dropdown-item" href=""> {{ category.name | capfirst }} </a>
+                            <a class="dropdown-item" href={{category.get_absolute_url}}> {{ category.name | capfirst }} </a>
                         
                         </li>
 
@@ -128,7 +128,7 @@
 
                 <li class="nav-item">
 
-                    <a type="button" role="button" href="/" class="btn btn-outline-danger"> 
+                    <a type="button" role="button" href="{% url 'cart-summary' %}" class="btn btn-outline-danger"> 
                     
 
 

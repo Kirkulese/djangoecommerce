@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'store', #django app
+    'cart', #cart app
 ]
 
 MIDDLEWARE = [
@@ -67,6 +68,9 @@ TEMPLATES = [
                 
                 #adding categories view form store app here to make variables accessible app wide
                 'store.views.categories',
+                
+                #add cart context processors
+                'cart.context_processors.cart'
             ],
         },
     },

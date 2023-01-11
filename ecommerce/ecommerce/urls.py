@@ -21,8 +21,13 @@ from django.conf.urls.static import static
 urlpatterns = [
     
     path('admin/', admin.site.urls),
+    
     #register urls from store app directory
     path('', include('store.urls')),
+
+
+    #Cart app include
+    path('cart/', include('cart.urls'))
 
 ]
 #add static files to url patterns, using the imported variables from settings.py 

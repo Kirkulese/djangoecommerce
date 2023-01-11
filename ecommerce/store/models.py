@@ -1,5 +1,6 @@
 from django.db import models
 
+from django.urls import reverse
 # Create your models here.
 
 
@@ -14,6 +15,11 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+    
+    #this will create a url for the product that will take you to the individual product page, 'product-info' is the name of the urlpattern
+    def get_absolute_url(self):
+        return reverse('list-category', args=[self.slug])
+    
 
 
 class Product(models.Model):
@@ -32,6 +38,11 @@ class Product(models.Model):
 
     def __str__(self):
         return self.title
+
+    #this will create a url for the product that will take you to the individual product page, 'product-info' is the name of the urlpattern
+    def get_absolute_url(self):
+        return reverse('product-info', args=[self.slug])
+    
 
 
 
