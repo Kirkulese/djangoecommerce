@@ -13,3 +13,18 @@ class Cart():
 
         #assign cart to self
         self.cart = cart
+    
+    def add(self, product, product_qty):
+        
+        #find product id, check if item is in cart, if it is change qty. otherwise add it to cart with price and qty
+        product_id = str(product.id)
+
+        if product_id in self.cart:
+            self.cart[product_id]['qty'] = product_qty
+        
+        else:
+            self.cart[product_id] = {'price': str(product.price), 'qty': product_qty}
+
+
+        #track that session has been modified
+        self.session.modified = True
