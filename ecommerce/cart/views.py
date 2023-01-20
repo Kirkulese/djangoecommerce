@@ -7,7 +7,10 @@ from django.http import JsonResponse
 # Create your views here.
 
 def cart_summary(request):
-    return render(request, 'cart/cart-summary.html')
+    #get Cart object and put it in variable, then return that variable and load the cart-summart template
+    cart = Cart(request)
+
+    return render(request, 'cart/cart-summary.html', {'cart': cart})
 
 
 def cart_add(request):
@@ -25,7 +28,10 @@ def cart_add(request):
         #once product is found call add to cart function and pass in product and qty
         cart.add(product=product, product_qty=product_quantity)
 
-        response = JsonResponse({'the product is called: ': product.title, ' and the qty is: ': product_quantity})
+        #update cart quantity using the length function in the cart.py file
+        cart_quantity = cart.__len__()
+
+        response = JsonResponse({'qty': cart_quantity})
         return response 
 
 def cart_delete(request):

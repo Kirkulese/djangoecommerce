@@ -1,3 +1,6 @@
+from decimal import Decimal
+from store.models import Product
+
 #this cart.py file will contain all the cart functions 
 class Cart():
     #initialize session when creating cart
@@ -28,3 +31,29 @@ class Cart():
 
         #track that session has been modified
         self.session.modified = True
+
+    def __len__(self):
+        #add up all the qty for each item in shopping cart
+        return sum(item['qty'] for item in self.cart.values())
+
+
+    #without this iter class, you cannot use for item in cart statement will return error not iterable    
+    def __iter__(self):
+        #get all product ids which are the keys, the get products from db by id in cart
+        all_product_ids = self.cart.keys()
+        products = Product.objects.filter(id__in=all_product_ids)
+        
+        cart = self.cart.copy()
+
+        for product in products:
+            cart[str(product.id)]['product'] = product
+
+        for item in cart.values():
+            item['price'] = Decimal(item['price'])
+            item['total'] = item['price'] * item['qty']
+
+            yield item
+
+    def get_total(self):
+        #convert price to decimal, multiply by qty for each item in cart
+        return sum(Decimal(item['price']) * item['qty'] for item in self.cart.values())

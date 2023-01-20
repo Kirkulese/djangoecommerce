@@ -114,7 +114,8 @@
 
             },
             success: function(json){
-                console.log(json)
+                // change qty of cart on navbar
+                document.getElementById("cart-qty").textContent = json.qty
             },
             error: function(xhr, errmsg, error) {
 
