@@ -94,7 +94,7 @@
                   
                   &nbsp;
 
-                  <button type="button" id="delete-button"
+                  <button type="button" data-index={{product.id}}
                     class="btn btn-danger btn-sm delete-button">
                     Delete
         
@@ -129,6 +129,40 @@
     <br>
 
  </main>
+
+ <script>
+  //delete button functionality
+  $(document).on('click', '.delete-button', function(e){
+    e.preventDefault()
+
+    $.ajax({
+        type: 'POST',
+        url: '{% url "cart-delete" %}',
+        data: {
+            //get index from this.data to specify the product to be deleted
+            product_id: $(this).data('index'),
+            csrfmiddlewaretoken: "{{csrf_token}}",
+            action: 'post',
+
+        },
+        success: function(json){
+            //function to refresh the page on success so that the item gets removed
+            location.reload();
+
+            // change qty of cart on navbar
+            document.getElementById("cart-qty").textContent = json.qty
+            document.getElementById("subtotal").textContent = json.total
+        },
+        error: function(xhr, errmsg, error) {
+
+        },
+
+    })
+
+
+})
+
+ </script>
 
 
 
