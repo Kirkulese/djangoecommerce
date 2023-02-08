@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     'store', #django app
     'cart', #cart app
+    'account', #account app
 
     'mathfilters', #for simple calculations
 ]

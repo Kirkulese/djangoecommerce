@@ -27,7 +27,10 @@ urlpatterns = [
 
 
     #Cart app include
-    path('cart/', include('cart.urls'))
+    path('cart/', include('cart.urls')),
+
+    #account app urls
+    path('account/', include('account.urls')),
 
 ]
 #add static files to url patterns, using the imported variables from settings.py 

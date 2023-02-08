@@ -66,7 +66,7 @@
 
                   &nbsp; 
                   
-                  <select id="">
+                  <select id="select{{product.id}}"> 
                   
                     <option selected>
                   
@@ -86,7 +86,7 @@
                   
                   <br> <br>
 
-                  <button type="button" id="update-button"
+                  <button type="button" data-index={{product.id}}
                     class="btn btn-primary btn-sm update-button">
                     Update
                   
@@ -160,7 +160,41 @@
     })
 
 
-})
+  })
+  //update buttton functionality
+  $(document).on('click', '.update-button', function(e){
+    e.preventDefault()
+    var theproductid = $(this).data('index')
+
+    $.ajax({
+        type: 'POST',
+        url: '{% url "cart-update" %}',
+        data: {
+            //get index from this.data to specify the product to be deleted
+            //get qty from the select id, need to concatenate with actual product id
+            product_id: $(this).data('index'),
+            product_qty: $('#select' + theproductid + ' option:selected').text(),
+            csrfmiddlewaretoken: "{{csrf_token}}",
+            action: 'post',
+
+        },
+        success: function(json){
+            //function to refresh the page on success so that the item gets removed
+            location.reload();
+
+            // change qty of cart on navbar
+            document.getElementById("cart-qty").textContent = json.qty
+            document.getElementById("subtotal").textContent = json.total
+        },
+        error: function(xhr, errmsg, error) {
+
+        },
+
+    })
+
+
+  })
+
 
  </script>
 
