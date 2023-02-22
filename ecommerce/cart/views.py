@@ -68,6 +68,6 @@ def cart_update(request):
 
 
         response = JsonResponse({'total': cart_total, 'qty': cart_quantity})
-
+        #this is what gets sent back to jquery to use doc selectors to instantly update website
         return response
 

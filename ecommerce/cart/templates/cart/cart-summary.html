@@ -131,7 +131,7 @@
  </main>
 
  <script>
-  //delete button functionality
+  //delete button functionality Jquery to check for clicks, then it launches AJAX
   $(document).on('click', '.delete-button', function(e){
     e.preventDefault()
 
@@ -161,7 +161,7 @@
 
 
   })
-  //update buttton functionality
+  //update buttton functionality Jquery to check for clicks, then it launches AJAX
   $(document).on('click', '.update-button', function(e){
     e.preventDefault()
     var theproductid = $(this).data('index')
