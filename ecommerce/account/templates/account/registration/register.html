@@ -1,0 +1,60 @@
+{% include 'store/base.html' %}
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+
+    <style>
+        body {
+            background-color: lightgray;
+        }
+
+    </style>
+
+    <body>
+        <br>
+        <div class="container bg-white shadow-md p-5 form-layout">
+
+            <h3> Create Account</h3>
+            <h5> Get your favorite greenery today!</h5>
+
+            <br>
+            <br>
+
+            <form method="POST" autocomplete="off">
+                {% csrf_token %}
+
+                {{form|crispy}}
+                <!-- <div class="form-group">
+                    <label for="InputUsername">Username</label>
+                    <p>{{form.username}}</p>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail">Email</label>
+                    <p>{{form.email}}</p>
+                </div>
+                    
+                 
+                  <div class="form-group">
+                    <label for="InputPassword1">Password</label>
+                    <p>{{form.password1}}</p>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="InputPassword2">Confirm Password</label>
+                    <p>{{form.password2}}</p>
+                  </div> -->
+
+                <br> <br>
+                <button type="submit" class="btn btn-secondary btn-large w-100 btn-block p-2">&nbsp; Create Account</button>
+            </form>
+
+
+        </div>
+
+    </body>
+
+
+{% endblock %}

@@ -15,6 +15,7 @@
         <!-- CSS -->
         
         <link rel="stylesheet" href="https://bootswatch.com/5/minty/bootstrap.min.css">
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -111,7 +112,7 @@
 
                 <li class="nav-item">
             
-                    <a class="btn btn-alert navbar-btn text-white" type="button"  href="/"> Register </a>
+                    <a class="btn btn-alert navbar-btn text-white" type="button"  href="{% url 'register' %}"> Register </a>
 
                 </li>
 
